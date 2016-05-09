@@ -29,7 +29,7 @@ def webhook():
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "yahooWeatherForecast":
+    if req.get("result").get("action") != "foursquareAPI":
         return {}
     #baseurl = "https://query.yahooapis.com/v1/public/yql?"
     baseurl = "https://api.foursquare.com/v2/venues/search?"
@@ -102,4 +102,4 @@ if __name__ == '__main__':
 
     print "Starting app on port %d" % port
 
-    app.run()
+    app.run(debug=False, port=port, host='0.0.0.0')
