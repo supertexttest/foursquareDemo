@@ -32,14 +32,10 @@ def processRequest(req):
     if req.get("result").get("action") != "yahooWeatherForecast":
         return {}
     baseurl = "https://query.yahooapis.com/v1/public/yql?"
-    # baseurl = "https://api.foursquare.com/v2/venues/search?"
     yql_query = makeYqlQuery(req)
-    client_id = parameters.get("client_id")
-    client_secret = parameters.get("client_secret")
     if yql_query is None:
         return {}
-    yql_url = baseurl + urllib.urlencode({'client_id': yql_query}) + "&format=json"
-    # yql_url = baseurl + "client_id="client_id+"client_secret="client_secret + "&v=20130815&ll=40.7,-74&query=sushi&format=json"
+    yql_url = baseurl + urllib.urlencode({'q': yql_query}) + "&format=json"
     result = urllib.urlopen(yql_url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
@@ -50,7 +46,6 @@ def makeYqlQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
     city = parameters.get("geo-city")
-    
     if city is None:
         return None
 
