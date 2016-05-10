@@ -3,6 +3,9 @@
 import urllib
 import json
 import os
+import logging
+from logging.handlers import RotatingFileHandler
+
 
 from flask import Flask
 from flask import request
@@ -46,6 +49,7 @@ def processRequest(req):
         return {}
     baseurl = "https://api.foursquare.com/v2/venues/search?"
     yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&ll=40.7,-74&query=sushi&format=json"
+    app.logger.info(yql_url)
     result = urllib.urlopen(yql_url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
@@ -125,5 +129,8 @@ if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
     print "Starting app on port %d" % port
+    handler = RotatingFileHandler('foursquare.log', maxBytes=10000, backupCount=1)
+    handler.setLevel(logging.INFO)
+    app.logger.addHandler(handler)
 
     app.run(debug=False, port=port, host='0.0.0.0')
