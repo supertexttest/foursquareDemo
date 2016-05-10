@@ -3,7 +3,6 @@
 import urllib
 import json
 import os
-import sys
 
 
 from flask import Flask
@@ -48,21 +47,20 @@ def processRequest(req):
         return {}
     baseurl = "https://api.foursquare.com/v2/venues/search?"
     yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&ll=40.7,-74&query=sushi&format=json"
-    sys.stdout.write(yql_url)
     result = urllib.urlopen(yql_url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
     return res
 
 
-def makeYqlQuery(req):
-    result = req.get("result")
-    parameters = result.get("parameters")
-    city = parameters.get("geo-city")
-    if city is None:
-        return None
+# def makeYqlQuery(req):
+#     result = req.get("result")
+#     parameters = result.get("parameters")
+#     city = parameters.get("geo-city")
+#     if city is None:
+#         return None
 
-    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+#     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 
 # def makeWebhookResult(data):
@@ -113,13 +111,8 @@ def makeWebhookResult(data):
     formattedAddress = venues.get('formattedAddress')
     if (location is None) or (venues is None) or (name is None):
         return {}
-    sys.stdout.write(name)
-    sys.stdout.write(formattedAddress)
-    sys.stdout.write(location.get('country'))
 
-    speech = "Sure, I will find place near you. You can go to " + name + " and address is: " + formattedAddress + 
-             ", city  " + location.get('country')
-    sys.stdout.write(speech)
+    speech = "Sure, I will find place near you. You can go to " + name + " and address is: " + formattedAddress
 
     print("Response:")
     print(speech)
