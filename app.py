@@ -45,10 +45,7 @@ def processRequest(req):
     if req.get("result").get("action") != "foursquareAPIsDemo":
         return {}
     baseurl = "https://api.foursquare.com/v2/venues/search?"
-    yql_query = makeYqlQuery(req)
-    if yql_query is None:
-        return {}
-    yql_url = baseurl + "client_id=" + client_id + "client_secret=" + client_secret + "&v=20130815&ll=40.7,-74&query=sushi&format=json"
+    yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&ll=40.7,-74&query=sushi&format=json"
     result = urllib.urlopen(yql_url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
