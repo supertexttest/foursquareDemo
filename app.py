@@ -115,11 +115,8 @@ def makeWebhookResult(data):
     venues = response.get('venues')
     name = venues[0].get('name')
     location = venues[0].get('location')
-    formattedAddress = venues[0].get('formattedAddress')
-    sys.stdout.write(type(venues))
-    sys.stdout.write(type(name))
-    sys.stdout.write(type(location))
-    sys.stdout.write(type(formattedAddress))
+    formattedAddress = venues[0].get('formattedAddress')[0]
+    # sys.stdout.write(type(venues))
     if (location is None) or (name is None) or (formattedAddress is None):
         return {}
 
