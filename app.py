@@ -9,10 +9,16 @@ from flask import Flask
 from flask import request
 from flask import make_response
 
+from flask import render_template
+import sys
+import logging
+
 # Flask app should start in global layout
 app = Flask(__name__)
 
-
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR
+    
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
