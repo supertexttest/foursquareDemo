@@ -53,6 +53,7 @@ def processRequest(req):
         return {}
     baseurl = "https://api.foursquare.com/v2/venues/search?"
     yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&ll=40.7,-74&query=sushi&format=json"
+    sys.stdout.write(yql_url)
     result = urllib.urlopen(yql_url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
@@ -115,10 +116,10 @@ def makeWebhookResult(data):
     name = venues[0].get('name')
     location = venues[0].get('location')
     formattedAddress = venues[0].get('formattedAddress')
-    sys.stdout.write(venues)
-    sys.stdout.write(name)
-    sys.stdout.write(location)
-    sys.stdout.write(formattedAddress)
+    sys.stdout.write(type(venues))
+    sys.stdout.write(type(name))
+    sys.stdout.write(type(location))
+    sys.stdout.write(type(formattedAddress))
     if (location is None) or (name is None) or (formattedAddress is None):
         return {}
 
