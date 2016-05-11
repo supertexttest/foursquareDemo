@@ -115,7 +115,11 @@ def makeWebhookResult(data):
     name = venues[0].get('name')
     location = venues[0].get('location')
     formattedAddress = venues[0].get('formattedAddress')
-    if (location is None) or (name is None):
+    sys.stdout.write(venues)
+    sys.stdout.write(name)
+    sys.stdout.write(location)
+    sys.stdout.write(formattedAddress)
+    if (location is None) or (name is None) or (formattedAddress is None):
         return {}
 
     speech = "Sure, I will find place near you. You can go to " + name + " and address is: " + formattedAddress
