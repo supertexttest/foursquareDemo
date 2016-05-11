@@ -112,7 +112,7 @@ def processRequest(req):
 def makeWebhookResult(data):
     response = data.get('response')
     venues = response.get('venues')
-    name = venues.get('name')
+    name = venues[0].get('name')
     location = venues.get('location')
     formattedAddress = venues.get('formattedAddress')
     if (location is None) or (venues is None) or (name is None):
