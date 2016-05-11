@@ -113,18 +113,24 @@ def processRequest(req):
 def makeWebhookResult(data):
     response = data.get('response')
     venues = response.get('venues')
-    name = venues[0].get('name')
-    location = venues[0].get('location')
-    address = location.get('address')
-    # sys.stdout.write(type(venues))
-
-    speech = "Sure, I will find place near you. You can go to " + name + " and address is: " + address
+    speech_default = "Sure, I will find places near you. You can go to following places: "
+    speech = ""
+    count = 0
+    for item in venues:
+        if count > 3:
+            break
+        name = item.get('name')
+        location = item.get('location')
+        address = location.get('address')
+        speech = speech + name + " and address is: " + address + ", "
+        count = count +1
+    speech_result = speech_default + speech
 
     print("Response:")
-    print(speech)
+    print(speech_result)
     return {
-        "speech": speech,
-        "displayText": speech,
+        "speech": speech_result,
+        "displayText": speech_result,
         "source": "apiai-weather-webhook-sample"
     }
 
