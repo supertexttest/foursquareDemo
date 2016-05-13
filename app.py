@@ -62,7 +62,7 @@ def processRequest(req):
     if food_order:
         query = food_order
     if movie_activity:
-        query = movie
+        query = movie_activity
     baseurl = "https://api.foursquare.com/v2/venues/search?"
     yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&near=" + city + "&query=" + query
     # yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&ll=40.7,-74&query=sushi&format=json"
