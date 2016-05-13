@@ -58,6 +58,7 @@ def processRequest(req):
     fun_activity = parameters.get("fun_activity")
     movie_activity = parameters.get("movie")
     given_address = parameters.get('area_bangalore')
+    sys.stdout.write(given_address)
     google_map_url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + given_address +"&key=AIzaSyDBxg0Go8biQLvb2O10zU8TomUalu2mK_g"
     sys.stdout.write(google_map_url)
     map_result = urllib.url_map_open(google_map_url).read()
@@ -74,8 +75,10 @@ def processRequest(req):
     if movie_activity:
         query = movie_activity
     baseurl = "https://api.foursquare.com/v2/venues/search?"
-    yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&near=" + city + "&query=" + query
-    yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&ll="+lat+","+lng"&query=sushi&format=json"
+    if city:
+        yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&near=" + city + "&query=" + query
+    else:
+        yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&ll="+lat+","+lng+"&query=sushi&format=json"
     sys.stdout.write(yql_url)
     result = urllib.urlopen(yql_url).read()
     data = json.loads(result)
