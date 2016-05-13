@@ -61,7 +61,7 @@ def processRequest(req):
     sys.stdout.write(given_address)
     google_map_url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + given_address +"&key=AIzaSyDBxg0Go8biQLvb2O10zU8TomUalu2mK_g"
     sys.stdout.write(google_map_url)
-    map_result = urllib.url_map_open(google_map_url).read()
+    map_result = urllib.urlopen(google_map_url).read()
     map_data = json.loads(map_result)
     results = map_data.get('results')
     geometry = results[0].get('geometry').get('location')
