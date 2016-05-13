@@ -51,8 +51,18 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "foursquareAPIsDemo":
         return {}
+    result = req.get("result")
+    parameters = result.get("parameters")
+    city = parameters.get("geo-city")
+    food_order = parameters.get("food_order")
+    fun_activity = parameters.get("fun_activity")
+    if fun_activity:
+        query = fun_activity
+    if food_order:
+        query = food_order
     baseurl = "https://api.foursquare.com/v2/venues/search?"
-    yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&ll=40.7,-74&query=sushi&format=json"
+    yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&near=" + city + "&query=" + query
+    # yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&ll=40.7,-74&query=sushi&format=json"
     sys.stdout.write(yql_url)
     result = urllib.urlopen(yql_url).read()
     data = json.loads(result)
@@ -123,7 +133,7 @@ def makeWebhookResult(data):
         location = item.get('location')
         address = location.get('address')
         speech = speech + name + " and address is: " + address + ", "
-        count = count +1
+        count = count + 1
     speech_result = speech_default + speech
 
     print("Response:")
