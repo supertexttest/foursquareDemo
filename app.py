@@ -132,8 +132,9 @@ def makeWebhookResult(data):
         name = item.get('name')
         location = item.get('location')
         address = location.get('address')
-        speech = speech + name + " and address is: " + address + ", "
-        count = count + 1
+        if address:
+            speech = speech + name + " and address is: " + address + ", "
+            count = count + 1
     speech_result = speech_default + speech
 
     print("Response:")
