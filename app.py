@@ -62,10 +62,16 @@ def processRequest(req):
     if food_order:
         file_in = open("objs.txt","wb")
         file_in.write(food_order)
+        sys.stdout.write("1111")
+        sys.stdout.write(food_order)
+        sys.stdout.write("22222")
         file_in.close()
     if given_address:
         file_out = open("objs.txt","r")
         food_order = file_out.read()
+        sys.stdout.write("3333")
+        sys.stdout.write(given_address)
+        sys.stdout.write(food_order)
         file_out.close()
         with open("objs.txt", "w"):
             pass
