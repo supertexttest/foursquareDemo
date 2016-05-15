@@ -59,6 +59,13 @@ def processRequest(req):
     movie_activity = parameters.get("movie")
     given_address = parameters.get('area_bangalore')
     sys.stdout.write(given_address)
+    if food_order:
+        with open('objs.pickle', 'w') as f:
+            pickle.dump([food_order], f)
+    if given_address:
+        with open('objs.pickle') as f:
+            food_order = pickle.load(f)
+
     google_map_url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + given_address +"&key=AIzaSyDBxg0Go8biQLvb2O10zU8TomUalu2mK_g"
     sys.stdout.write(google_map_url)
     map_result = urllib.urlopen(google_map_url).read()
