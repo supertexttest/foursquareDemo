@@ -58,7 +58,7 @@ def processRequest(req):
     fun_activity = parameters.get("fun_activity")
     movie_activity = parameters.get("movie")
     given_address = parameters.get('area_bangalore')
-    sys.stdout.write(given_address)
+    # sys.stdout.write(given_address)
     if food_order:
         file_in = open("objs.txt","wb")
         file_in.write(food_order)
