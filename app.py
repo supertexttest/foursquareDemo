@@ -12,7 +12,7 @@ from flask import make_response
 from flask import render_template
 import sys
 import logging
-import pickle
+# import pickle
 # Flask app should start in global layout
 app = Flask(__name__)
 
@@ -60,11 +60,15 @@ def processRequest(req):
     given_address = parameters.get('area_bangalore')
     sys.stdout.write(given_address)
     if food_order:
-        with open('objs.pickle', 'w') as f:
-            pickle.dump([food_order], f)
+        file_in = open("objs.txt","wb")
+        file_in.write(food_order)
+        file_in.close()
     if given_address:
-        with open('objs.pickle') as f:
-            food_order = pickle.load(f)
+        file_out = open("objs.txt","r")
+        food_order = file_out.read()
+        file_out.close()
+        with open("objs.txt", "w"):
+            pass
 
     google_map_url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + given_address +"&key=AIzaSyDBxg0Go8biQLvb2O10zU8TomUalu2mK_g"
     sys.stdout.write(google_map_url)
