@@ -165,15 +165,17 @@ def makeWebhookResult(data):
         name = item.get('name')
         url = item.get('url')
         menu = item.get('menu')
+        mobile_menu = ""
+        menu_url = ""
         if menu:
             mobile_menu = menu.get('mobileUrl')
             menu_url = menu.get('url')
         location = item.get('location')
         address = location.get('address')
         if address:
-            if mobile_menu:
+            if mobile_menu != "":
                 speech = speech + name + " and address is: " + address + " ,url :" + url + ",mobile menu is:" + mobile_menu + " , "
-            elif menu_url:
+            elif menu_url != "":
                 speech = speech + name + " and address is: " + address + " ,url :" + url + ",menu is:" + menu_url + " , "
             else:
                     speech = speech + name + " and address is: " + address + " ,url :" + url + " , "
