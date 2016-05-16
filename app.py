@@ -172,9 +172,9 @@ def makeWebhookResult(data):
         if address:
             if mobile_menu:
                 speech = speech + name + " and address is: " + address + " ,url :" + url + ",mobile menu is:" + mobile_menu + " , "
-            else if menu_url:
+            elif menu_url:
                 speech = speech + name + " and address is: " + address + " ,url :" + url + ",menu is:" + menu_url + " , "
-                else:
+            else:
                     speech = speech + name + " and address is: " + address + " ,url :" + url + " , "
             count = count + 1
     speech_result = speech_default + speech
