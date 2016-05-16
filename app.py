@@ -164,12 +164,18 @@ def makeWebhookResult(data):
             break
         name = item.get('name')
         url = item.get('url')
-        menu = item.get('menu').get('url')
-        mobile_menu = item.get('menu').get('mobileUrl')
+        menu = item.get('menu')
+        mobile_menu = menu.get('mobileUrl')
+        menu_url = menu.get('url')
         location = item.get('location')
         address = location.get('address')
         if address:
-            speech = speech + name + " and address is: " + address + " ,url :" + url + ",menu is:" + menu + ",mobile menu is:" + mobile_menu + " , "
+            if mobile_menu:
+                speech = speech + name + " and address is: " + address + " ,url :" + url + ",mobile menu is:" + mobile_menu + " , "
+            else if menu_url:
+                speech = speech + name + " and address is: " + address + " ,url :" + url + ",menu is:" + menu_url + " , "
+                else:
+                    speech = speech + name + " and address is: " + address + " ,url :" + url + " , "
             count = count + 1
     speech_result = speech_default + speech
 
