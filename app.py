@@ -165,8 +165,9 @@ def makeWebhookResult(data):
         name = item.get('name')
         url = item.get('url')
         menu = item.get('menu')
-        mobile_menu = menu.get('mobileUrl')
-        menu_url = menu.get('url')
+        if menu:
+            mobile_menu = menu.get('mobileUrl')
+            menu_url = menu.get('url')
         location = item.get('location')
         address = location.get('address')
         if address:
