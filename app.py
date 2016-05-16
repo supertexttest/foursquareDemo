@@ -160,13 +160,16 @@ def makeWebhookResult(data):
     speech = ""
     count = 0
     for item in venues:
-        if count > 3:
+        if count > 2:
             break
         name = item.get('name')
+        url = item.get('url')
+        menu = item.get('menu').get('url')
+        mobile_menu = item.get('menu').get('mobileUrl')
         location = item.get('location')
         address = location.get('address')
         if address:
-            speech = speech + name + " and address is: " + address + ", "
+            speech = speech + name + " and address is: " + address + " ,url :" + url + ",menu is:" + menu + ",mobile menu is:" + mobile_menu + " , "
             count = count + 1
     speech_result = speech_default + speech
 
