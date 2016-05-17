@@ -34,7 +34,7 @@ def webhook():
     # print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
-    sys.stdout.write(r)
+    # sys.stdout.write(r)
     return r
 
 
