@@ -225,12 +225,12 @@ def makeWebhookResultExplore(data):
         address = location.get('address')
         if address:
             if mobile_menu != "":
-                speech = speech + name + " and address is: " + address + " ,url :" + url + ",mobile menu is:" + 
-                mobile_menu + " , "
+                speech = speech + name + " and address is: " + address + " and url :" + url + " and mobile menu is:" + 
+                mobile_menu + ", "
             elif menu_url != "":
-                speech = speech + name + " and address is: " + address + " ,url :" + url + ",menu is:" + menu_url + " , "
+                speech = speech + name + " and address is: " + address + " and url :" + url + " and menu is:" + menu_url + " , "
             elif url:
-                    speech = speech + name + " and address is: " + address + " ,url :" + url + " , "
+                speech = speech + name + " and address is: " + address + " and url :" + url + " , "
             else:
                 speech = speech + name + " and address is: " + address + " ,"
             count = count + 1
