@@ -12,6 +12,8 @@ from flask import make_response
 from flask import render_template
 import sys
 import logging
+import datetime
+
 # import pickle
 # Flask app should start in global layout
 app = Flask(__name__)
@@ -32,6 +34,7 @@ def webhook():
     # print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
+    sys.stdout.write(r)
     return r
 
 
@@ -91,15 +94,21 @@ def processRequest(req):
         query = food_order
     if movie_activity:
         query = movie_activity
-    baseurl = "https://api.foursquare.com/v2/venues/search?"
+    # baseurl = "https://api.foursquare.com/v2/venues/search?"
+    baseurl = "https://api.foursquare.com/v2/venues/explore?"
+    date = datetime.datetime.now().strftime ("%Y%m%d")
     if city:
-        yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&near=" + city + "&query=" + query
+        # yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&near=" + city + "&query=" + query + "&v=" + date
+        yql_url = baseurl + "oauth_token=EMN1IAQ2TNZLHDI0VV3HSCKHWWLV3X3LGMKJV10KTBI55UDL&near=" + city + "&query=" + query + "&v=" + date
+
+        
     else:
-        yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&ll="+str(lat)+","+str(lng)+"&query=" + query
+        # yql_url = baseurl + "client_id=FBR415TEGJMA13MWR0ZXS2RD0KO1PBVEEFKBNPC5Y1K23FHQ&client_secret=EIGPMK3AV4IALOK4KJWIKJH1AA40R1KVKP2L3VY5O0TD5KBL&v=20130815&ll="+str(lat)+","+str(lng)+"&query=" + query
+        yql_url = baseurl + "oauth_token=EMN1IAQ2TNZLHDI0VV3HSCKHWWLV3X3LGMKJV10KTBI55UDL&ll="+str(lat)+","+str(lng)+"&query=" + query + "&v=" + date
     sys.stdout.write(yql_url)
     result = urllib.urlopen(yql_url).read()
     data = json.loads(result)
-    res = makeWebhookResult(data)
+    res = makeWebhookResultExplore(data)
     return res
 
 
@@ -192,6 +201,47 @@ def makeWebhookResult(data):
         "source": "apiai-weather-webhook-sample"
     }
 
+
+def makeWebhookResultExplore(data):
+    response = data.get('response')
+    groups = response.get('groups')
+    items = groups[0].get('items')
+    speech_default = "Sure, I will find places near you. You can go to following places: "
+    speech = ""
+    count = 0
+    for item in items:
+        if count > 2:
+            break
+        venue = item.get('venue')
+        url = venue.get('name')
+        menu = item.get('menu')
+        mobile_menu = ""
+        menu_url = ""
+        if menu:
+            mobile_menu = menu.get('mobileUrl')
+            menu_url = menu.get('url')
+        location = item.get('location')
+        address = location.get('address')
+        if address:
+            if mobile_menu != "":
+                speech = speech + name + " and address is: " + address + " ,url :" + url + ",mobile menu is:" + mobile_menu + " , "
+            elif menu_url != "":
+                speech = speech + name + " and address is: " + address + " ,url :" + url + ",menu is:" + menu_url + " , "
+            elif url:
+                    speech = speech + name + " and address is: " + address + " ,url :" + url + " , "
+            else:
+                speech = speech + name + " and address is: " + address + " ,"
+            count = count + 1
+    speech_result = speech_default + speech
+
+    print("Response:")
+    print(speech_result)
+    return {
+        "speech": speech_result,
+        "displayText": speech_result,
+        "source": "apiai-weather-webhook-sample"
+    }
+
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
@@ -200,4 +250,4 @@ if __name__ == '__main__':
     # handler.setLevel(logging.INFO)
     # app.logger.addHandler(handler)
 
-    app.run(debug=False, port=port, host='0.0.0.0')
+    app.run(debug=False, port=port, host='0.0.0.0') 
