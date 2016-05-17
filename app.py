@@ -234,12 +234,13 @@ def makeWebhookResultExplore(data):
                 speech = speech + name + " and address is: " + address + " ,"
             count = count + 1
     speech_result = speech_default + speech
+    speech_result_final = speech_result.encode('utf-8')
 
     print("Response:")
-    print(speech_result)
+    print(speech_result_final)
     return {
-        "speech": speech_result,
-        "displayText": speech_result,
+        "speech": speech_result_final,
+        "displayText": speech_result_final,
         "source": "apiai-weather-webhook-sample"
     }
 
