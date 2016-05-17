@@ -226,7 +226,7 @@ def makeWebhookResultExplore(data):
         if address:
             if mobile_menu != "":
                 speech = speech + name + " and address is: " + address + " ,url :" + url + ",mobile menu is:" + 
-                 + " , "
+                mobile_menu + " , "
             elif menu_url != "":
                 speech = speech + name + " and address is: " + address + " ,url :" + url + ",menu is:" + menu_url + " , "
             elif url:
