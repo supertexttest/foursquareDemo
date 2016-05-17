@@ -214,13 +214,13 @@ def makeWebhookResultExplore(data):
             break
         venue = item.get('venue')
         url = venue.get('name')
-        menu = item.get('menu')
+        menu = venue.get('menu')
         mobile_menu = ""
         menu_url = ""
         if menu:
             mobile_menu = menu.get('mobileUrl')
             menu_url = menu.get('url')
-        location = item.get('location')
+        location = venue.get('location')
         address = location.get('address')
         if address:
             if mobile_menu != "":
