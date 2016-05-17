@@ -213,7 +213,8 @@ def makeWebhookResultExplore(data):
         if count > 2:
             break
         venue = item.get('venue')
-        url = venue.get('name')
+        name = venue.get('name')
+        url = venue.get('url')
         menu = venue.get('menu')
         mobile_menu = ""
         menu_url = ""
@@ -224,7 +225,8 @@ def makeWebhookResultExplore(data):
         address = location.get('address')
         if address:
             if mobile_menu != "":
-                speech = speech + name + " and address is: " + address + " ,url :" + url + ",mobile menu is:" + mobile_menu + " , "
+                speech = speech + name + " and address is: " + address + " ,url :" + url + ",mobile menu is:" + 
+                 + " , "
             elif menu_url != "":
                 speech = speech + name + " and address is: " + address + " ,url :" + url + ",menu is:" + menu_url + " , "
             elif url:
