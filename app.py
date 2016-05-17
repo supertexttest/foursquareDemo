@@ -183,11 +183,11 @@ def makeWebhookResult(data):
         address = location.get('address')
         if address:
             if mobile_menu != "":
-                speech = speech + name + " and address is: " + address + " ,url :" + url + ",mobile menu is:" + mobile_menu + " , "
+                speech = speech + name + " and address is: " + address + " ,url : " + url + ",mobile menu is:" + mobile_menu + " , "
             elif menu_url != "":
-                speech = speech + name + " and address is: " + address + " ,url :" + url + ",menu is:" + menu_url + " , "
+                speech = speech + name + " and address is: " + address + " ,url : " + url + ",menu is:" + menu_url + " , "
             elif url:
-                    speech = speech + name + " and address is: " + address + " ,url :" + url + " , "
+                    speech = speech + name + " and address is: " + address + " ,url : \n" + url + " , "
             else:
                 speech = speech + name + " and address is: " + address + " ,"
             count = count + 1
