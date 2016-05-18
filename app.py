@@ -14,28 +14,55 @@ import sys
 import logging
 import datetime
 
+from pymessenger.bot import Bot
+
+app = Flask(__name__)
+TOKEN = "EAAG9OSBpGwsBAEnbeuZAwQsksT5gJ3NsDAxtRkwJnGIJcUEli03CGqAmv9ZBoGnpwsyW7Vai8s8PYvyZCNRLUTQzxC2yBa3asrncqjmfiSwH9nLFPf3R74z2O1IpdSTWejcGOBuoeZBhcF0UPLT6thx8wCZCglefbaPHL88vQJhrZCGijfBwvr"
+bot = Bot(TOKEN)
+
 # import pickle
 # Flask app should start in global layout
-app = Flask(__name__)
+# app = Flask(__name__)
 
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    req = request.get_json(silent=True, force=True)
 
-    print("Request:")
-    print(json.dumps(req, indent=4))
 
-    res = processRequest(req)
+@app.route("/webhook", methods = ['GET', 'POST'])
+def hello():
+    if request.method == 'GET':
+        if (request.args.get("hub.verify_token") == "testbot_verify_token"):
+                return request.args.get("hub.challenge")
+    # if request.method == 'POST':
+    #     output = request.json
+    #     event = output['entry'][0]['messaging']
+    #     for x in event:
+    #         if (x.get('message') and x['message'].get('text')):
+    #             message = x['message']['text']
+    #             recipient_id = x['sender']['id']
+    #             bot.send_text_message(recipient_id, message)
+    #         else:
+    #             pass
+    #     return "success"
 
-    res = json.dumps(res, indent=4)
-    # print(res)
-    r = make_response(res)
-    r.headers['Content-Type'] = 'application/json'
-    # sys.stdout.write(r)
-    return r
+
+# @app.route('/webhook', methods=['POST'])
+# def webhook():
+#     req = request.get_json(silent=True, force=True)
+
+#     print("Request:")
+#     print(json.dumps(req, indent=4))
+
+#     res = processRequest(req)
+
+#     res = json.dumps(res, indent=4)
+#     # print(res)
+#     r = make_response(res)
+#     r.headers['Content-Type'] = 'application/json'
+#     # sys.stdout.write(r)
+#     print(r)
+#     return r
 
 
 # def processRequest(req):
@@ -52,7 +79,7 @@ def webhook():
 #     return res
 
 def processRequest(req):
-    if req.get("result").get("action") != "foursquareAPIsDemo":
+    if req.get("result").get("action") != "foursquareAPIsDemo   ":
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
@@ -183,9 +210,9 @@ def makeWebhookResult(data):
         address = location.get('address')
         if address:
             if mobile_menu != "":
-                speech = speech + name + " and address is: " + address + " ,url : " + url + ",mobile menu is:" + mobile_menu + " , "
+                speech = speech + name + " and address is: " + address + " ,url : \n" + url + ",mobile menu is:" + mobile_menu + " , "
             elif menu_url != "":
-                speech = speech + name + " and address is: " + address + " ,url : " + url + ",menu is:" + menu_url + " , "
+                speech = speech + name + " and address is: " + address + " ,url : \n" + url + ",menu is:" + menu_url + " , "
             elif url:
                     speech = speech + name + " and address is: " + address + " ,url : \n" + url + " , "
             else:
