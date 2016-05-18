@@ -14,8 +14,8 @@ class Bot:
         result = requests.post(self.base_url, json=payload)
         return result.json()
     def send_text_message_api_ai(self, recipient_id, text):
-        ai = apiai.ApiAI()
-        request = ai.text_request(CLIENT_ACCESS_TOKEN)
+        ai = apiai.ApiAI(CLIENT_ACCESS_TOKEN)
+        request = ai.text_request()
         request.lang = 'en'  # optional, default value equal 'en'
         request.query = text
         response = request.getresponse()
