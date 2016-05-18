@@ -14,11 +14,11 @@ import sys
 import logging
 import datetime
 
-# from pymessenger.bot import Bot
+from pymessenger.bot import Bot
 
 app = Flask(__name__)
 TOKEN = "EAAG9OSBpGwsBAEnbeuZAwQsksT5gJ3NsDAxtRkwJnGIJcUEli03CGqAmv9ZBoGnpwsyW7Vai8s8PYvyZCNRLUTQzxC2yBa3asrncqjmfiSwH9nLFPf3R74z2O1IpdSTWejcGOBuoeZBhcF0UPLT6thx8wCZCglefbaPHL88vQJhrZCGijfBwvr"
-# bot = Bot(TOKEN)
+bot = Bot(TOKEN)
 
 # import pickle
 # Flask app should start in global layout
@@ -34,17 +34,17 @@ def hello():
     if request.method == 'GET':
         if (request.args.get("hub.verify_token") == "testbot_verify_token"):
                 return request.args.get("hub.challenge")
-    # if request.method == 'POST':
-    #     output = request.json
-    #     event = output['entry'][0]['messaging']
-    #     for x in event:
-    #         if (x.get('message') and x['message'].get('text')):
-    #             message = x['message']['text']
-    #             recipient_id = x['sender']['id']
-    #             bot.send_text_message(recipient_id, message)
-    #         else:
-    #             pass
-    #     return "success"
+    if request.method == 'POST':
+        output = request.json
+        event = output['entry'][0]['messaging']
+        for x in event:
+            if (x.get('message') and x['message'].get('text')):
+                message = x['message']['text']
+                recipient_id = x['sender']['id']
+                bot.send_text_message(recipient_id, message)
+            else:
+                pass
+        return "success"
 
 
 # @app.route('/webhook', methods=['POST'])
