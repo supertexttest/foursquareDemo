@@ -24,7 +24,7 @@ class Bot:
         print (response.read())
 
         payload = {'recipient': {'id': recipient_id},
-                   'message': {'text': response}
+                   'message': {'text': response.read()}
                   }
         result = requests.post(self.base_url, json=payload)
         return result.json()
