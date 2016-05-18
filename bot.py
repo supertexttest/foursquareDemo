@@ -1,6 +1,7 @@
 import requests
 import json
 
+CLIENT_ACCESS_TOKEN = '4f176853c63c4d1897b4c3c1b44b6040'
 class Bot:
     def __init__(self, access_token):
         self.access_token = access_token
@@ -13,8 +14,8 @@ class Bot:
         result = requests.post(self.base_url, json=payload)
         return result.json()
     def send_text_message_api_ai(self, recipient_id, text):
-        ai = apiai.ApiAI(4f176853c63c4d1897b4c3c1b44b6040)
-        request = ai.text_request()
+        ai = apiai.ApiAI()
+        request = ai.text_request(CLIENT_ACCESS_TOKEN)
         request.lang = 'en'  # optional, default value equal 'en'
         request.query = text
         response = request.getresponse()
