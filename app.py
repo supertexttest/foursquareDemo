@@ -14,7 +14,7 @@ import sys
 import logging
 import datetime
 
-from pymessenger.bot import Bot
+# from pymessenger.bot import Bot
 
 app = Flask(__name__)
 TOKEN = "EAAG9OSBpGwsBAEnbeuZAwQsksT5gJ3NsDAxtRkwJnGIJcUEli03CGqAmv9ZBoGnpwsyW7Vai8s8PYvyZCNRLUTQzxC2yBa3asrncqjmfiSwH9nLFPf3R74z2O1IpdSTWejcGOBuoeZBhcF0UPLT6thx8wCZCglefbaPHL88vQJhrZCGijfBwvr"
