@@ -1,5 +1,6 @@
 import requests
 import json
+import apiai
 
 CLIENT_ACCESS_TOKEN = '4f176853c63c4d1897b4c3c1b44b6040'
 class Bot:
