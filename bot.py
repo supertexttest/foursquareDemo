@@ -12,6 +12,19 @@ class Bot:
                   }
         result = requests.post(self.base_url, json=payload)
         return result.json()
+    def send_text_message_api_ai(self, recipient_id, text):
+        ai = apiai.ApiAI(4f176853c63c4d1897b4c3c1b44b6040)
+        request = ai.text_request()
+        request.lang = 'en'  # optional, default value equal 'en'
+        request.query = text
+        response = request.getresponse()
+        print (response.read())
+
+        payload = {'recipient': {'id': recipient_id},
+                   'message': {'text': response.read()}
+                  }
+        result = requests.post(self.base_url, json=payload)
+        return result.json()
  
     def send_message(self, recipient_id, message):
         payload ={'recipient': {'id': recipient_id},
