@@ -1,4 +1,5 @@
-import requests
+from flask import Flask
+from flask import request
 import json
 
 class Bot:
@@ -10,14 +11,14 @@ class Bot:
         payload = {'recipient': {'id': recipient_id},
                    'message': {'text': message}
                   }
-        result = requests.post(self.base_url, json=payload)
+        result = request.post(self.base_url, json=payload)
         return result.json()
  
     def send_message(self, recipient_id, message):
         payload ={'recipient': {'id': recipient_id},
                   'message': message
                  }
-        return requests.post(self.base_url, json=payload).json()
+        return request.post(self.base_url, json=payload).json()
 
     def send_generic_message(self, recipient_id, elements):
         payload = {'recipient': {'id': recipient_id},
@@ -30,4 +31,4 @@ class Bot:
                                 }
                               }
                    }
-        return requests.post(self.base_url, json=payload).json()
+        return request.post(self.base_url, json=payload).json()
