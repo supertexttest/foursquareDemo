@@ -1,6 +1,5 @@
 import requests
-# import json
-import simplejson as json
+import json
 from apiai import ApiAI
 
 CLIENT_ACCESS_TOKEN = '4f176853c63c4d1897b4c3c1b44b6040'
@@ -27,8 +26,10 @@ class Bot:
         # print(response.id)
         # print (response.speech)
         string = response.read().decode('utf-8')
-        dic = json.loads(string)
-        print(dic['id'])
+        index_start = string.find('speech')
+        index_end = string.find('webhookUsed')
+        final_string = string[index_start:index_end]
+        print(final_string])
 
         payload = {'recipient': {'id': recipient_id},
                    'message': {'text': response.read()}
