@@ -22,7 +22,7 @@ class Bot:
         request.query = text
         response = request.getresponse()
         print (response.read())
-        print(type(response)
+        print(type(response))
         # print(response.id)
         # print (response.speech)
 
