@@ -21,7 +21,8 @@ class Bot:
         request.lang = 'en'  # optional, default value equal 'en'
         request.query = text
         response = request.getresponse()
-        print (response.read())
+        print (response.content)
+        print (response.content.speech)
 
         payload = {'recipient': {'id': recipient_id},
                    'message': {'text': response.read()}
