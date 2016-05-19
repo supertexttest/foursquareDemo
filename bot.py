@@ -28,16 +28,16 @@ class Bot:
         string = response.read().decode('utf-8')
         # string_string = str(string)
         string_dump = json.dumps(string)
-        print(string_dump)
-        print('1111111111111')
-        print(type(string))
-        print(type(string_dump))
+        # print(string_dump)
+        # print('1111111111111')
+        # print(type(string))
+        # print(type(string_dump))
         # print(type(string_string))
         index_start = string.find('speech')
-        print(index_start)
+        # print(index_start)
         index_end = string.find('}',index_start)
-        final_string = string[index_start:index_end]
-        print(final_string)
+        final_string = string[index_start+9:index_end-1]
+        # print(final_string)
 
         payload = {'recipient': {'id': recipient_id},
                    'message': {'text': final_string}
