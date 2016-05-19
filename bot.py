@@ -21,13 +21,15 @@ class Bot:
         request.lang = 'en'  # optional, default value equal 'en'
         request.query = text
         response = request.getresponse()
-        print (response.read())
+        # print (response.read())
         # print(type(response))
         # print(response.id)
         # print (response.speech)
         string = response.read().decode('utf-8')
+        print(string)
         index_start = string.find('speech')
         print('1111111111111')
+        print(type(string))
         print(index_start)
         index_end = string.find('}',index_start)
         final_string = string[index_start:index_end]
