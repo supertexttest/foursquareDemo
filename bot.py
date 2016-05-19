@@ -20,34 +20,32 @@ class Bot:
         request = ai.text_request()
         request.lang = 'en'  # optional, default value equal 'en'
         request.query = text
+        print(request.read())
         response = request.getresponse()
        
         string = response.read().decode('utf-8')
         print(string)
         # string_string = str(string)
         # string_dump = json.dumps(string)
-
-        
+        # food_order = ""
+        # area_bangalore = ""
         # low = string.find('food_order')
         # if low != -1:
         #   high = string.find('"',low+14)
         #   if (high - low) > 1:
-        #     food_order = True
-        #   else:
-        #     food_order = False
+        #     food_order = string[low:high]
 
         # low_add = string.find('area_bangalore')
         # if low_add != -1:
         #   high_add = string.find('"',low_add+18)
         #   if (high_add - low_add) > 1:
-        #     given_address = True
-        #   else:
-        #     given_address = False
+        #     area_bangalore = string[low_add:high_add]
+
         # if food_order:
         #   file_in = open("objs_server.txt","wb")
         #   file_in.write(food_order)
         #   file_in.close()
-        # if given_address:
+        # if area_bangalore:
         #   file_out = open("objs_server.txt","r")
         #   food_order = file_out.read()
         #   file_out.close()
