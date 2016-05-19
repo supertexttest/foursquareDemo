@@ -27,7 +27,9 @@ class Bot:
         # print (response.speech)
         string = response.read().decode('utf-8')
         index_start = string.find('speech')
-        index_end = string.find('webhookUsed')
+        print('1111111111111')
+        print(index_start)
+        index_end = string.find('}',index_start)
         final_string = string[index_start:index_end]
         print(final_string)
 
