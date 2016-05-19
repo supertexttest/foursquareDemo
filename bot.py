@@ -29,7 +29,7 @@ class Bot:
         index_start = string.find('speech')
         index_end = string.find('webhookUsed')
         final_string = string[index_start:index_end]
-        print(final_string])
+        print(final_string)
 
         payload = {'recipient': {'id': recipient_id},
                    'message': {'text': response.read()}
