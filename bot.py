@@ -32,7 +32,7 @@ class Bot:
         print('1111111111111')
         print(type(string))
         print(type(string_dump))
-        print(type(string_string))
+        # print(type(string_string))
         index_start = string.find('speech')
         print(index_start)
         index_end = string.find('}',index_start)
