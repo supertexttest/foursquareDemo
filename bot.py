@@ -21,18 +21,39 @@ class Bot:
         request.lang = 'en'  # optional, default value equal 'en'
         request.query = text
         response = request.getresponse()
-        # print (response.read())
-        # print(type(response))
-        # print(response.id)
-        # print (response.speech)
+       
         string = response.read().decode('utf-8')
+        print(string)
         # string_string = str(string)
-        string_dump = json.dumps(string)
-        # print(string_dump)
-        # print('1111111111111')
-        # print(type(string))
-        # print(type(string_dump))
-        # print(type(string_string))
+        # string_dump = json.dumps(string)
+
+        
+        # low = string.find('food_order')
+        # if low != -1:
+        #   high = string.find('"',low+14)
+        #   if (high - low) > 1:
+        #     food_order = True
+        #   else:
+        #     food_order = False
+
+        # low_add = string.find('area_bangalore')
+        # if low_add != -1:
+        #   high_add = string.find('"',low_add+18)
+        #   if (high_add - low_add) > 1:
+        #     given_address = True
+        #   else:
+        #     given_address = False
+        # if food_order:
+        #   file_in = open("objs_server.txt","wb")
+        #   file_in.write(food_order)
+        #   file_in.close()
+        # if given_address:
+        #   file_out = open("objs_server.txt","r")
+        #   food_order = file_out.read()
+        #   file_out.close()
+        #   with open("objs_server.txt", "w"):
+        #       pass
+        
         index_start = string.find('speech')
         # print(index_start)
         index_end = string.find('}',index_start)
