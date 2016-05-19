@@ -26,21 +26,21 @@ class Bot:
         # print(response.id)
         # print (response.speech)
         string = response.read().decode('utf-8')
-        string_string = str(string)
+        # string_string = str(string)
         string_dump = json.dumps(string)
         print(string_dump)
         print('1111111111111')
-        print(type(string))
+        # print(type(string))
         print(type(string_dump))
-        print(type(string_string))
+        # print(type(string_string))
         index_start = string_dump.find('speech')
         print(index_start)
         index_end = string.find('}',index_start)
-        final_string = string[index_start:index_end]
+        final_string = string_dump[index_start:index_end]
         print(final_string)
 
         payload = {'recipient': {'id': recipient_id},
-                   'message': {'text': response.read()}
+                   'message': {'text': final_string}
                   }
         result = requests.post(self.base_url, json=payload)
         return result.json()
