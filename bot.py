@@ -25,7 +25,7 @@ class Bot:
         # print(type(response))
         # print(response.id)
         # print (response.speech)
-        dic = json.loads(response)
+        dic = json.loads(response.read())
         print(dic['id'])
 
         payload = {'recipient': {'id': recipient_id},
