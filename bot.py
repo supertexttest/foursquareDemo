@@ -1,5 +1,6 @@
 import requests
-import json
+# import json
+import simplejson as json
 from apiai import ApiAI
 
 CLIENT_ACCESS_TOKEN = '4f176853c63c4d1897b4c3c1b44b6040'
