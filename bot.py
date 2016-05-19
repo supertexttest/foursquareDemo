@@ -22,9 +22,11 @@ class Bot:
         request.query = text
         response = request.getresponse()
         print (response.read())
-        print(type(response))
+        # print(type(response))
         # print(response.id)
         # print (response.speech)
+        dic = json.loads(response)
+        print(dic['id'])
 
         payload = {'recipient': {'id': recipient_id},
                    'message': {'text': response.read()}
