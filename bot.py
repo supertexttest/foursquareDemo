@@ -37,7 +37,7 @@ class Bot:
         # print(index_start)
         index_end = string.find('}',index_start)
         final_string = string[index_start+9:index_end-1]
-        # print(final_string)
+        print(final_string)
 
         payload = {'recipient': {'id': recipient_id},
                    'message': {'text': final_string}
