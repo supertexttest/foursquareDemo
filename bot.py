@@ -127,41 +127,4 @@ class Bot:
 
 
 
-      def makeWebhookResult(data):
-          response = data.get('response')
-          venues = response.get('venues')
-          speech_default = "Sure, I will find places near you. You can go to following places: "
-          speech = ""
-          count = 0
-          for item in venues:
-              if count > 2:
-                  break
-              name = item.get('name')
-              url = item.get('url')
-              menu = item.get('menu')
-              mobile_menu = ""
-              menu_url = ""
-              if menu:
-                  mobile_menu = menu.get('mobileUrl')
-                  menu_url = menu.get('url')
-              location = item.get('location')
-              address = location.get('address')
-              if address:
-                  if mobile_menu != "":
-                      speech = speech + name + " and address is: " + address + " ,url : \n" + url + ",mobile menu is:" + mobile_menu + " , "
-                  elif menu_url != "":
-                      speech = speech + name + " and address is: " + address + " ,url : \n" + url + ",menu is:" + menu_url + " , "
-                  elif url:
-                          speech = speech + name + " and address is: " + address + " ,url : \n" + url + " , "
-                  else:
-                      speech = speech + name + " and address is: " + address + " ,"
-                  count = count + 1
-          speech_result = speech_default + speech
-
-          print("Response:")
-          print(speech_result)
-          return {
-              "speech": speech_result,
-              "displayText": speech_result,
-              "source": "apiai-weather-webhook-sample"
-          }
+      
