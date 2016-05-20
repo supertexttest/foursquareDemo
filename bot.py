@@ -84,7 +84,7 @@ class Bot:
                  }
         return requests.post(self.base_url, json=payload).json()
 
-    def send_generic_message(self, recipient_id, query):
+    def send_generic_message(recipient_id, query):
 
         baseurl = "https://api.foursquare.com/v2/venues/explore?"
         date = datetime.datetime.now().strftime ("%Y%m%d")
