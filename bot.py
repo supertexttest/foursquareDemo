@@ -91,24 +91,24 @@ class Bot:
         data = json.loads(result)
         # res = makeWebhookResultExplore(data)
         response = data.get('response')
-          venues = response.get('venues')
-          speech_default = "Sure, I will find places near you. You can go to following places: "
-          speech = ""
-          count = 0
-          for item in venues:
-              if count > 0:
-                  break
-              name = item.get('name')
-              url = item.get('url')
-              menu = item.get('menu')
-              # mobile_menu = ""
-              # menu_url = ""
-              # if menu:
-              #     mobile_menu = menu.get('mobileUrl')
-              #     menu_url = menu.get('url')
-              location = item.get('location')
-              address = location.get('address')
-              count = count + 1
+        venues = response.get('venues')
+        speech_default = "Sure, I will find places near you. You can go to following places: "
+        speech = ""
+        count = 0
+        for item in venues:
+            if count > 0:
+                break
+            name = item.get('name')
+            url = item.get('url')
+            menu = item.get('menu')
+            # mobile_menu = ""
+            # menu_url = ""
+            # if menu:
+            #     mobile_menu = menu.get('mobileUrl')
+            #     menu_url = menu.get('url')
+            location = item.get('location')
+            address = location.get('address')
+            count = count + 1
 
 
         payload = {'recipient': {'id': recipient_id},
