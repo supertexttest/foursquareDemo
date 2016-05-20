@@ -16,6 +16,7 @@ class Bot:
         baseurl = "https://api.foursquare.com/v2/venues/explore?"
         date = datetime.datetime.now().strftime ("%Y%m%d")
         yql_url = baseurl + "query="+query+"&ll=40.7,-74&oauth_token=EMN1IAQ2TNZLHDI0VV3HSCKHWWLV3X3LGMKJV10KTBI55UDL&v=20160516"
+        print(yql_url)
         # if city:
         #     yql_url = baseurl + "oauth_token=EMN1IAQ2TNZLHDI0VV3HSCKHWWLV3X3LGMKJV10KTBI55UDL&ll=40.7,-74" + city + "&query=" + query + "&v=" + date
         # else:
