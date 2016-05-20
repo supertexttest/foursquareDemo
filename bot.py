@@ -107,7 +107,7 @@ class Bot:
             #     mobile_menu = menu.get('mobileUrl')
             #     menu_url = menu.get('url')
             location = item.get('location')
-            address = location.get('address')
+            address = location.get('address') 
             count = count + 1
 
 
@@ -116,8 +116,8 @@ class Bot:
                                 "type": "template",
                                 "payload": {
                                     "template_type": "generic",
-                                    "thumbnail": url
-                                    "address":address
+                                    "thumbnail": url,
+                                    "address":address,
                                     "name":name
                                     }
                                 }
