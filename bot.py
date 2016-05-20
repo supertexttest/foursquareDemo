@@ -46,12 +46,6 @@ class Bot:
             location = venue.get('location')
             address = location.get('address')
             count = count +1
-
-
-        print('hiiiiiiiiiiiiiiiii')
-        print(url)
-        print(name)
-        print(address)
         text_message = name + ", "+url+", "+address
         print(text_message)
         payload = {'recipient': {'id': recipient_id},
@@ -75,7 +69,6 @@ class Bot:
         file_out.close()
         with open("objs_server.txt", "w"):
             pass
-        food_order = "food"
         if food_order != "":
           print("inside foursquare api codeeeeeeeeeee")
           self.send_generic_message(recipient_id,food_order)
