@@ -10,6 +10,54 @@ class Bot:
         self.access_token = access_token
         self.base_url = "https://graph.facebook.com/v2.6/me/messages?access_token={0}".format(access_token)
 
+    def send_generic_message(recipient_id, query):
+
+        baseurl = "https://api.foursquare.com/v2/venues/explore?"
+        date = datetime.datetime.now().strftime ("%Y%m%d")
+        yql_url = baseurl + "query="+query+"&ll=40.7,-74&oauth_token=EMN1IAQ2TNZLHDI0VV3HSCKHWWLV3X3LGMKJV10KTBI55UDL&v=20160516"
+        # if city:
+        #     yql_url = baseurl + "oauth_token=EMN1IAQ2TNZLHDI0VV3HSCKHWWLV3X3LGMKJV10KTBI55UDL&ll=40.7,-74" + city + "&query=" + query + "&v=" + date
+        # else:
+        #     yql_url = baseurl + "oauth_token=EMN1IAQ2TNZLHDI0VV3HSCKHWWLV3X3LGMKJV10KTBI55UDL&ll="+str(lat)+","+str(lng)+"&query=" + query + "&v=" + date
+        # sys.stdout.write(yql_url)
+        result = urllib.urlopen(yql_url).read()
+        data = json.loads(result)
+        # res = makeWebhookResultExplore(data)
+        response = data.get('response')
+        venues = response.get('venues')
+        speech_default = "Sure, I will find places near you. You can go to following places: "
+        speech = ""
+        count = 0
+        for item in venues:
+            if count > 0:
+                break
+            name = item.get('name')
+            url = item.get('url')
+            menu = item.get('menu')
+            # mobile_menu = ""
+            # menu_url = ""
+            # if menu:
+            #     mobile_menu = menu.get('mobileUrl')
+            #     menu_url = menu.get('url')
+            location = item.get('location')
+            address = location.get('address') 
+            count = count + 1
+
+        print('hiiiiiiiiiiiiiiiii')
+        payload = {'recipient': {'id': recipient_id},
+                   'message': { "attachment": {
+                                "type": "template",
+                                "payload": {
+                                    "template_type": "generic",
+                                    "thumbnail": url,
+                                    "address":address,
+                                    "name":name
+                                    }
+                                }
+                              }
+                   }
+        return requests.post(self.base_url, json=payload).json()
+
     def send_text_message(self, recipient_id, message):
         payload = {'recipient': {'id': recipient_id},
                    'message': {'text': message}
@@ -84,53 +132,7 @@ class Bot:
                  }
         return requests.post(self.base_url, json=payload).json()
 
-    def send_generic_message(recipient_id, query):
-
-        baseurl = "https://api.foursquare.com/v2/venues/explore?"
-        date = datetime.datetime.now().strftime ("%Y%m%d")
-        yql_url = baseurl + "query="+query+"&ll=40.7,-74&oauth_token=EMN1IAQ2TNZLHDI0VV3HSCKHWWLV3X3LGMKJV10KTBI55UDL&v=20160516"
-        # if city:
-        #     yql_url = baseurl + "oauth_token=EMN1IAQ2TNZLHDI0VV3HSCKHWWLV3X3LGMKJV10KTBI55UDL&ll=40.7,-74" + city + "&query=" + query + "&v=" + date
-        # else:
-        #     yql_url = baseurl + "oauth_token=EMN1IAQ2TNZLHDI0VV3HSCKHWWLV3X3LGMKJV10KTBI55UDL&ll="+str(lat)+","+str(lng)+"&query=" + query + "&v=" + date
-        # sys.stdout.write(yql_url)
-        result = urllib.urlopen(yql_url).read()
-        data = json.loads(result)
-        # res = makeWebhookResultExplore(data)
-        response = data.get('response')
-        venues = response.get('venues')
-        speech_default = "Sure, I will find places near you. You can go to following places: "
-        speech = ""
-        count = 0
-        for item in venues:
-            if count > 0:
-                break
-            name = item.get('name')
-            url = item.get('url')
-            menu = item.get('menu')
-            # mobile_menu = ""
-            # menu_url = ""
-            # if menu:
-            #     mobile_menu = menu.get('mobileUrl')
-            #     menu_url = menu.get('url')
-            location = item.get('location')
-            address = location.get('address') 
-            count = count + 1
-
-        print('hiiiiiiiiiiiiiiiii')
-        payload = {'recipient': {'id': recipient_id},
-                   'message': { "attachment": {
-                                "type": "template",
-                                "payload": {
-                                    "template_type": "generic",
-                                    "thumbnail": url,
-                                    "address":address,
-                                    "name":name
-                                    }
-                                }
-                              }
-                   }
-        return requests.post(self.base_url, json=payload).json()
+    
 
 
 
