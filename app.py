@@ -41,6 +41,7 @@ def hello():
             if (x.get('message') and x['message'].get('text')):
                 message = x['message']['text']
                 recipient_id = x['sender']['id']
+                print('666666666666666666666666666')
                 bot.send_text_message_api_ai(recipient_id, message)
             else:
                 pass
