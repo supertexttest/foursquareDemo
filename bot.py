@@ -55,6 +55,7 @@ class Bot:
           #     area_bangalore = string[low_add:high_add]
 
           if food_order != "":
+            print('writing into fileee: '+food_order)
             file_in = open("objs_server.txt","wb")
             file_in.write(food_order)
             file_in.close()
