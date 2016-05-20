@@ -10,7 +10,7 @@ class Bot:
         self.access_token = access_token
         self.base_url = "https://graph.facebook.com/v2.6/me/messages?access_token={0}".format(access_token)
 
-    def send_generic_message(recipient_id, query):
+    def send_generic_message(self,recipient_id, query):
 
         baseurl = "https://api.foursquare.com/v2/venues/explore?"
         date = datetime.datetime.now().strftime ("%Y%m%d")
@@ -74,7 +74,7 @@ class Bot:
             pass
         if food_order != "":
           print("inside foursquare api codeeeeeeeeeee")
-          send_generic_message(recipient_id,food_order)
+          self.send_generic_message(recipient_id,food_order)
         else:
           print("inside elseeeeeeeeeeee")
           request = ai.text_request()
