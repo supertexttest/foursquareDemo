@@ -46,7 +46,7 @@ class Bot:
             high = string.find('"',low+14)
             if (high - low) > 1:
               print("inside food_order to write into file")
-              food_order = string[low:high]
+              food_order = string[low+14:high]
           print(food_order)
           # low_add = string.find('area_bangalore')
           # if low_add != -1:
