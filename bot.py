@@ -23,8 +23,10 @@ class Bot:
         with open("objs_server.txt", "w"):
             pass
         if food_order != "":
+          print("inside foursquare api codeeeeeeeeeee")
           send_generic_message(recipient_id,food_order)
         else:
+          print("inside elseeeeeeeeeeee")
           request = ai.text_request()
           request.lang = 'en'  # optional, default value equal 'en'
           request.query = text
@@ -110,7 +112,7 @@ class Bot:
             address = location.get('address') 
             count = count + 1
 
-
+        print('hiiiiiiiiiiiiiiiii')
         payload = {'recipient': {'id': recipient_id},
                    'message': { "attachment": {
                                 "type": "template",
