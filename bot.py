@@ -20,10 +20,10 @@ class Bot:
         print("insideeeeeeeeee oneeeeeeeeeeeee")
         file_out = open("objs_server.txt","r")
         food_order = file_out.read()
+        print("food_order is:"+food_order)
         file_out.close()
         with open("objs_server.txt", "w"):
             pass
-        print("food_order is:"+food_order)
         if food_order != "":
           print("inside foursquare api codeeeeeeeeeee")
           send_generic_message(recipient_id,food_order)
