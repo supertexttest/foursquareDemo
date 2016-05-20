@@ -2,6 +2,7 @@ import requests
 import json
 from apiai import ApiAI
 import datetime
+import urllib
 
 CLIENT_ACCESS_TOKEN = '4f176853c63c4d1897b4c3c1b44b6040'
 ai = ApiAI(CLIENT_ACCESS_TOKEN)
