@@ -23,6 +23,7 @@ class Bot:
         file_out.close()
         with open("objs_server.txt", "w"):
             pass
+        print("food_order is:"+food_order)
         if food_order != "":
           print("inside foursquare api codeeeeeeeeeee")
           send_generic_message(recipient_id,food_order)
@@ -40,11 +41,13 @@ class Bot:
           food_order = ""
           area_bangalore = ""
           low = string.find('food_order')
+          print(low)
           if low != -1:
             high = string.find('"',low+14)
             if (high - low) > 1:
+              print("inside food_order to write into file")
               food_order = string[low:high]
-
+          print(food_order)
           # low_add = string.find('area_bangalore')
           # if low_add != -1:
           #   high_add = string.find('"',low_add+18)
