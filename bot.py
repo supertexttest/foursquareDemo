@@ -52,16 +52,10 @@ class Bot:
         print(url)
         print(name)
         print(address)
+        text_message = name + ", "+url+", "+address
+        print(text_message)
         payload = {'recipient': {'id': recipient_id},
-                   'message': { "attachment": {
-                                "type": "template",
-                                "payload": {
-                                    "template_type": "generic",
-                                    "thumbnail": url,
-                                    "address":address,
-                                    "name":name
-                                    }
-                                }
+                   'message': {'text':text_message
                               }
                    }
         result = requests.post(self.base_url, json=payload)
