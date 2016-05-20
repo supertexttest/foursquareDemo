@@ -17,6 +17,7 @@ class Bot:
         result = requests.post(self.base_url, json=payload)
         return result.json()
     def send_text_message_api_ai(self, recipient_id, text):
+        print("insideeeeeeeeee oneeeeeeeeeeeee")
         file_out = open("objs_server.txt","r")
         food_order = file_out.read()
         file_out.close()
