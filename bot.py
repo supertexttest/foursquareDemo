@@ -49,6 +49,9 @@ class Bot:
 
 
         print('hiiiiiiiiiiiiiiiii')
+        print(url)
+        print(name)
+        print(address)
         payload = {'recipient': {'id': recipient_id},
                    'message': { "attachment": {
                                 "type": "template",
