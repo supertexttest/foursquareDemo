@@ -29,7 +29,7 @@ class Bot:
                                   }, {
                                   "type": "postback",
                                   "title": "I like this",
-                                  "payload": "User " + recipientId + " likes kitten " + imageUrl
+                                  "payload": "User " + recipient_id + " likes kitten " + imageUrl
                               }]
                           }]
                       }
