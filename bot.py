@@ -35,9 +35,9 @@ class Bot:
                       }
                   }
               }
-          print(message)
-          result = requests.post(self.base_url, json=message)
-          return result.json()
+        print(message)
+        result = requests.post(self.base_url, json=message)
+        return result.json()
 
 
 
