@@ -11,6 +11,36 @@ class Bot:
         self.access_token = access_token
         self.base_url = "https://graph.facebook.com/v2.6/me/messages?access_token={0}".format(access_token)
 
+    def generic_message(self,recipient_id,text):
+        imageUrl = "https://placekitten.com/200/300"
+        message = {
+                  "attachment": {
+                      "type": "template",
+                      "payload": {
+                          "template_type": "generic",
+                          "elements": [{
+                              "title": "Kitten",
+                              "subtitle": "Cute kitten picture",
+                              "image_url": imageUrl ,
+                              "buttons": [{
+                                  "type": "web_url",
+                                  "url": imageUrl,
+                                  "title": "Show kitten"
+                                  }, {
+                                  "type": "postback",
+                                  "title": "I like this",
+                                  "payload": "User " + recipientId + " likes kitten " + imageUrl
+                              }]
+                          }]
+                      }
+                  }
+              }
+          print(message)
+          result = requests.post(self.base_url, json=message)
+          return result.json()
+
+
+
     def send_generic_message(self,recipient_id, query):
 
         baseurl = "https://api.foursquare.com/v2/venues/explore?"
@@ -71,7 +101,7 @@ class Bot:
             pass
         if food_order != "":
           print("inside foursquare api codeeeeeeeeeee")
-          self.send_generic_message(recipient_id,food_order)
+          self.generic_message(recipient_id,food_order)
         else:
           print("inside elseeeeeeeeeeee")
           request = ai.text_request()
