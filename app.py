@@ -41,7 +41,11 @@ def hello():
             if (x.get('message') and x['message'].get('text')):
                 message = x['message']['text']
                 recipient_id = x['sender']['id']
-                bot.send_text_message_api_ai(recipient_id, message)
+                elements = []
+                element = Element(title="test", image_url="<arsenal_logo.png>", subtitle="subtitle", item_url="http://arsenal.com")
+                elements.append(element)
+                # bot.send_text_message_api_ai(recipient_id, message)
+                bot.send_generic_message(recipient_id,element)
             else:
                 pass
         return "success"

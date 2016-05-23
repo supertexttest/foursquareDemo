@@ -39,7 +39,22 @@ class Bot:
         result = requests.post(self.base_url, json=message)
         return result.json()
 
-
+    def send_generic_message1(self, recipient_id, elements):
+        payload = {
+            'recipient': {
+                'id': recipient_id
+            },
+            'message': {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": elements
+                    }
+                }
+            }
+        }
+        return self._send_payload(payload)
 
     def send_generic_message(self,recipient_id, query):
 
