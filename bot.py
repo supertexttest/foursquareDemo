@@ -40,6 +40,7 @@ class Bot:
         return result.json()
 
     def send_generic_message1(self, recipient_id, elements):
+        imageUrl = "https://placekitten.com/200/300"
         payload = {
             'recipient': {
                 'id': recipient_id
@@ -49,7 +50,10 @@ class Bot:
                     "type": "template",
                     "payload": {
                         "template_type": "generic",
-                        "elements": elements
+                          "elements": [{
+                              "title": "Kitten",
+                              "subtitle": "Cute kitten picture",
+                              "image_url": imageUrl
                     }
                 }
             }
@@ -173,6 +177,10 @@ class Bot:
                   'message': message
                  }
         return requests.post(self.base_url, json=payload).json()
+
+    def _send_payload(self, payload):
+        result = requests.post(self.base_url, json=payload).json()
+        return result
 
     
 
