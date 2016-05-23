@@ -42,7 +42,7 @@ def hello():
                 message = x['message']['text']
                 recipient_id = x['sender']['id']
                 # bot.send_text_message_api_ai(recipient_id, message)
-                bot.send_generic_message1(recipient_id,message)
+                bot.send_generic_message(recipient_id,message)
             else:
                 pass
         return "success"

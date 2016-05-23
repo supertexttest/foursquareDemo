@@ -122,6 +122,31 @@ class Bot:
             count = count +1
         text_message = name + ", "+url+", "+address
         print(text_message)
+
+        payload = {
+            "recipient": {
+                "id": recipient_id
+            },
+            "message": {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                          "elements": [{
+                              "title": name,
+                              "subtitle": address,
+                              "image_url": url,
+                              "buttons": [{
+                                "type": "web_url",
+                                "url": url,
+                                "title": "Show "+name
+                                }]
+                          }]
+                    }
+                }
+            }
+        }
+        return self._send_payload(payload)
         payload = {'recipient': {'id': recipient_id},
                    'message': {'text':text_message
                               }
