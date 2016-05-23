@@ -54,6 +54,15 @@ class Bot:
                               "title": "Kitten",
                               "subtitle": "Cute kitten picture",
                               "image_url": imageUrl
+                          },{
+                              "title": "Kitten",
+                              "subtitle": "Cute kitten picture",
+                              "image_url": imageUrl
+                          },
+                          {
+                              "title": "Kitten",
+                              "subtitle": "Cute kitten picture",
+                              "image_url": imageUrl
                           }]
                     }
                 }
