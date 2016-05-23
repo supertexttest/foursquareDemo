@@ -53,16 +53,31 @@ class Bot:
                           "elements": [{
                               "title": "Kitten",
                               "subtitle": "Cute kitten picture",
-                              "image_url": imageUrl
+                              "image_url": imageUrl,
+                              "buttons": [{
+                                "type": "web_url",
+                                "url": imageUrl,
+                                "title": "Show kitten"
+                                }]
                           },{
                               "title": "Kitten",
                               "subtitle": "Cute kitten picture",
-                              "image_url": imageUrl
+                              "image_url": imageUrl,
+                              "buttons": [{
+                                "type": "web_url",
+                                "url": imageUrl,
+                                "title": "Show kitten"
+                                }]
                           },
                           {
                               "title": "Kitten",
                               "subtitle": "Cute kitten picture",
-                              "image_url": imageUrl
+                              "image_url": imageUrl,
+                              "buttons": [{
+                                "type": "web_url",
+                                "url": imageUrl,
+                                "title": "Show kitten"
+                                }]
                           }]
                     }
                 }
