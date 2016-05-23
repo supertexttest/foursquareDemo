@@ -135,7 +135,7 @@ class Bot:
                           "elements": [{
                               "title": name,
                               "subtitle": address,
-                              "image_url": url,
+                              "image_url": "http://julianaspizza.com/index.php",
                               "buttons": [{
                                 "type": "web_url",
                                 "url": url,
