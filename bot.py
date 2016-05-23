@@ -122,6 +122,7 @@ class Bot:
             count = count +1
         text_message = name + ", "+url+", "+address
         print(text_message)
+        image_url = "http://julianaspizza.com/index.php"
 
         payload = {
             "recipient": {
@@ -135,7 +136,7 @@ class Bot:
                           "elements": [{
                               "title": name,
                               "subtitle": address,
-                              "image_url": "http://julianaspizza.com/index.php",
+                              "image_url": image_url,
                               "buttons": [{
                                 "type": "web_url",
                                 "url": url,
