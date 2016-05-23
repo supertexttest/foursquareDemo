@@ -42,10 +42,10 @@ class Bot:
     def send_generic_message1(self, recipient_id, elements):
         imageUrl = "https://placekitten.com/200/300"
         payload = {
-            'recipient': {
-                'id': recipient_id
+            "recipient": {
+                "id": recipient_id
             },
-            'message': {
+            "message": {
                 "attachment": {
                     "type": "template",
                     "payload": {
@@ -54,6 +54,7 @@ class Bot:
                               "title": "Kitten",
                               "subtitle": "Cute kitten picture",
                               "image_url": imageUrl
+                          }]
                     }
                 }
             }
